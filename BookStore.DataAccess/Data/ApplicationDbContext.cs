@@ -29,12 +29,17 @@ namespace BookStore.DataAccess.Data
                 //new Category { Id = 1, Name = "Action", DisplayOrder = 100 } // If want to add single data row--            
                 );
 
+            modelBuilder.Entity<Product>().HasData(
+                DefaultProduct.Products
+                );
+
             //this section for seeding data in database------ End here ------
 
         }
 
 
         public DbSet<Category> Categories { get; set; } 
+        public DbSet<Product>  Products { get; set; }
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
     }
 }
