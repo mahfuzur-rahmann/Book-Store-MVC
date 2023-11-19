@@ -1,0 +1,75 @@
+﻿
+@model List<Product>;
+<div class="card shadow border-0 mt-4">
+
+    <div class="card-header bg-success bg-gradient m-lg-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="text-white py-2"> Product list </h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-body py-2">
+
+        <div class="row pb-1 ">
+            <div class="col-6">
+                
+            </div>
+
+            <div class="col-6 text-end ">
+                <a asp-controller="Product" asp-action="Upsert" class="btn btn-dark"><i class="bi bi-patch-plus"></i> Create product</a>
+            </div>
+
+        </div>
+        <table id="tblData" class="table table-hover " style="width:100%;">
+            <thead class="">
+                <tr class=" border-bottom border-black ">
+                    <th >Title</th>
+                    <th >Author</th>
+                    <th >ISBN</th>
+                    <th >Price</th>
+                    <th >Category</th>
+                    <th ></th>
+                </tr>
+            </thead>
+
+            @* Tbpdy is cenceled when we used datatable plugin *@
+            @* <tbody>
+                @* @foreach (var data in Model.OrderBy(x => x.DisplayOrder)) -- this can be used to sort on any column *@
+
+                @* @foreach (var data in Model)
+
+                {
+                    <tr class="">
+                        <td>@data.Title</td>
+                        <td>@data.Author</td>
+                        <td>@data.ISBN</td>
+                        <td>@data.ListPrice</td>
+                        <td>@data.Category.Name</td>
+                        <td>
+                            <div class="btn-group w-80 text-center " role="group">
+                                <a asp-controller="Product" asp-action="Upsert" asp-route-Id="@data.Id" class="btn btn-info mx-2">
+                                    <i class="bi bi-pen"></i> Edit
+                                </a>
+
+                                <a asp-controller="Product" asp-action="Delete" asp-route-Id="@data.Id" class="btn btn-danger mx-2">
+                                    <i class="bi bi-x-circle-fill"></i> Delete
+                                </a>
+                            </div>
+
+                        </td>
+
+                    </tr>
+
+                }
+
+            </tbody> *@ 
+        </table>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/js/product.js"></script>
+}
+

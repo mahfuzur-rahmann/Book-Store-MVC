@@ -1,0 +1,87 @@
+﻿@model Product
+
+<div class="card shadow border-0 mt-4">
+
+    <div class="card-header bg-success bg-gradient m-lg-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="text-white py-2"> Delete Product </h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-body py-4">
+        <form method="post">
+            <div class="border p-3">
+                
+                @* <div asp-validation-summary="ModelOnly"></div> *@
+                <div class="mb-3 row p-1">
+                    <label asp-for="Title" class="p-0"></label>
+                    <input asp-for="Title" disabled class="form-control  border border-secondary" />
+                </div>
+
+                <div class="mb-3 row p-1">
+                    <label asp-for="Author" class="p-0"> </label>
+                    <input asp-for="Author" disabled class=" form-control border border-secondary" />
+
+                </div>
+
+                <div class="mb-3 row p-1">
+                    <label asp-for="ISBN" class="p-0"> </label>
+                    <input asp-for="ISBN" disabled class=" form-control border border-secondary" />
+                    
+
+                </div>
+
+                <div class="mb-3 row p-1">
+                    <label asp-for="Description" class="p-0"> </label>
+                    <input asp-for="Description" disabled  class=" form-control border border-secondary" />
+
+                </div>
+
+                <div class="mb-3 row p-1">
+                    <label asp-for="ListPrice" class="p-0"> </label>
+                    <input asp-for="ListPrice" disabled class=" form-control border border-secondary" />
+
+                </div>
+
+
+
+                <div class="mb-3 row p-1">
+                    <label asp-for="Price" class="p-0"> </label>
+                    <input asp-for="Price" class=" form-control border border-secondary" />
+
+                </div>
+
+                <div class="mb-3 row p-1">
+                    <label asp-for="Price50" class="p-0"> </label>
+                    <input asp-for="Price50" disabled class="  form-control border border-secondary" />
+
+                </div>
+
+                <div class="mb-3 row p-1">
+                    <label asp-for="Price100" class="p-0"> </label>
+                    <input asp-for="Price100" disabled class=" form-control border border-secondary" />
+                    
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-6 col-md-3">
+                        <button class="btn  form-control btn-outline-danger ">Delete</button>
+                    </div>
+
+                    <div class="col-6 col-md-3 ">
+                        <a asp-controller="Product" asp-action="Index" class=" form-control btn btn-outline-secondary text-dark">Back to list</a>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </form>
+    </div>
+</div>
+
+
