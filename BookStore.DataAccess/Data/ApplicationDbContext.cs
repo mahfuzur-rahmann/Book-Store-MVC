@@ -1,4 +1,5 @@
 ﻿
+using BookStore.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -20,5 +21,8 @@ namespace BookStore.DataAccess.Data
         {
             base.OnModelCreating(modelBuilder);
         }
+
+
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
     }
 }
