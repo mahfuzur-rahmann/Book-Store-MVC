@@ -1,4 +1,5 @@
 ﻿
+using BookStore.DataAccess.Seeds;
 using BookStore.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -20,9 +21,20 @@ namespace BookStore.DataAccess.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            //this section for seeding data in database------ Start here ------
+            modelBuilder.Entity<Category>().HasData(
+                DefaultCategory.Categories
+                //Alternatives
+                //new Category { Id = 1, Name = "Action", DisplayOrder = 100 } // If want to add single data row--            
+                );
+
+            //this section for seeding data in database------ End here ------
+
         }
 
 
+        public DbSet<Category> Categories { get; set; } 
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
     }
 }
