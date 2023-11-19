@@ -22,7 +22,7 @@ namespace BookStore.DataAccess.Repository
 
         public void Update(Category categoryObject)
         {
-            _db.Company.Update(categoryObject);
+            _db.Categories.Update(categoryObject);
 
         }
     }
