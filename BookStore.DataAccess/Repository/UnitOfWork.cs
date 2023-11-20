@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BookStore.Models;
 
 namespace BookStore.DataAccess.Repository
 {
@@ -15,12 +16,18 @@ namespace BookStore.DataAccess.Repository
         public IProductRepository Product { get; private set; }
         
         public ICompanyRepository Company { get; private set; }
+        
+        public IApplicationUserRepository ApplicationUserRepository { get; private set; }
+        public IShoppingCartRepository ShoppingCartRepository { get; private set; }
+
         public UnitOfWork(ApplicationDbContext db)
         {
             _db = db;
             Category = new CategoryRepository(_db);
             Product = new ProductRepository(_db);
             Company = new CompanyRepository(_db);
+            ApplicationUserRepository = new ApplicationUserRepository(_db);
+            ShoppingCartRepository = new ShoppingCartRepository(_db);
         }
 
 
