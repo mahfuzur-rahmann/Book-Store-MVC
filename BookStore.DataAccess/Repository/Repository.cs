@@ -18,7 +18,8 @@ namespace BookStore.DataAccess.Repository
         {
             _db = db;
             this.dbSet = _db.Set<T>();
-            _db.Products.Include(u => u.Category).Include(x => x.CategoryId);
+            _db.ShoppingCarts.Include(u => u.Product);
+
         }
         public void Add(T entity)
         {
