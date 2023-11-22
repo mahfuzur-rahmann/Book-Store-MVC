@@ -23,6 +23,6 @@ namespace BookStore.Models
         [Range(1, 100, ErrorMessage = "You cannot order more than 100")]
         public int DisplayOrder { get; set; }
 
-        public DateTime DateTime { get; set; }
+        // public DateTime DateTime { get; set; }
     }
 }

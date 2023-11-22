@@ -18,6 +18,17 @@ namespace BookStore.DataAccess.Repository
         {
             _db = db;
         }
-        
+
+        public int DecrementCount(ShoppingCart cart, int count)
+        {
+            cart.Count -= count;
+            return cart.Count;
+        }
+
+        public int IncrementCount(ShoppingCart cart, int count)
+        {
+            cart.Count += count;
+            return cart.Count;
+        }
     }
 }
