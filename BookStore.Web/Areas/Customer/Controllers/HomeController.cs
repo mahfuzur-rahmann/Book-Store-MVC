@@ -2,6 +2,8 @@ using BookStore.DataAccess.Repository.IRepository;
 using BookStore.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 namespace BookStore.Web.Areas.Customer.Controllers
 {
@@ -27,8 +29,52 @@ namespace BookStore.Web.Areas.Customer.Controllers
 
         public IActionResult Details(int productId)
         {
-            Product clickedProduct = _unitOfWork.Product.Get(u => u.Id == productId, includePrperties: "Category");
-            return View(clickedProduct);
+
+            ShoppingCart cartObj = new ShoppingCart()
+            {
+                Count= 1, 
+                ProductId =  productId,
+                Product  = _unitOfWork.Product.Get(u => u.Id == productId, includeProperties: "Category")
+            };
+       
+            return View(cartObj);
+        }
+        
+        [HttpPost] 
+        [ValidateAntiForgeryToken]
+        [Authorize]
+        public IActionResult Details(ShoppingCart shoppingCart)
+        {
+            //Extract the user identity or userId..
+            var calimsIdentity = (ClaimsIdentity)User.Identity;
+            var claims = calimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+            shoppingCart.ApplicationUserId = claims.Value;
+
+
+            ShoppingCart cartFromDb = _unitOfWork.ShoppingCart.GetFirstOrDefault(i=>i.ApplicationUserId == claims.Value &&  i.ProductId == shoppingCart.ProductId );
+            if(cartFromDb == null)
+            {
+                _unitOfWork.ShoppingCart.Add(shoppingCart);
+
+            }
+            else
+            {
+                _unitOfWork.ShoppingCart.IncrementCount(cartFromDb, shoppingCart.Count);
+            }
+
+            _unitOfWork.Save();
+
+            TempData["success"] = "Product added to cart successfully....";
+
+
+            ShoppingCart cartObj = new ShoppingCart()
+            {
+                Count= 1,
+                
+                // Product  = _unitOfWork.Product.Get(u => u.Id == productId, includePrperties: "Category")
+            };
+
+            return RedirectToAction(nameof(Index));
         }
 
 
