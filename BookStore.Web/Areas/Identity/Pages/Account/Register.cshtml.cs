@@ -172,6 +172,7 @@ namespace BookStore.Web.Areas.Identity.Pages.Account
                 user.State = Input.State;
                 user.City = Input.City;
                 user.StreetAddress = Input.StreetAddress;
+                user.PostalCode = Input.PostalCode;
                 if(Input.Role == StaticDetails.Role_User_Company)
                 {
                     user.CompanyId = Input.CompanyId;
