@@ -5,6 +5,7 @@ using BookStore.DataAccess.Repository.IRepository;
 using BookStore.DataAccess.Repository;
 using BookStore.Utility;
 using Microsoft.AspNetCore.Identity.UI.Services;
+using Stripe;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +13,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<ApplicationDbContext>(options=>options.UseSqlServer(builder.Configuration.GetConnectionString("MyDatabaseConnectionString")));
+
+builder.Services.Configure<StripSettings>(builder.Configuration.GetSection("StripSettings"));
 
 builder.Services.AddIdentity<IdentityUser,IdentityRole>().AddDefaultTokenProviders().AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddRazorPages();
@@ -41,6 +44,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+StripeConfiguration.ApiKey = builder.Configuration.GetSection("StripSettings: SecretKey").Get<string>();
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapRazorPages();
