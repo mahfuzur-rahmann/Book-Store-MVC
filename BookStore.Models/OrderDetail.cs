@@ -16,7 +16,7 @@ namespace BookStore.Models
         [Required]
         public int OrderId { get; set; }
 
-        [ForeignKey("OderId")]
+        [ForeignKey("OrderId")]
         [ValidateNever]
         public OrderHeader OrderHeader { get; set; }
 
