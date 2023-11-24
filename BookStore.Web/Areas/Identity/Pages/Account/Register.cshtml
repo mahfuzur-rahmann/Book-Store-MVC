@@ -42,16 +42,22 @@
             </div>
             
             
-            <div class="form-floating mb-3 col-6">
+            <div class="form-floating mb-3 col-4">
                 <input asp-for="Input.City" class="form-control border border-secondary"  aria-required="true" placeholder="name@example.com" />
                 <label asp-for="Input.City">City</label>
                 <span asp-validation-for="Input.City" class="text-danger"></span>
             </div>
             
-            <div class="form-floating mb-3 col-6">
+            <div class="form-floating mb-3 col-4">
                 <input asp-for="Input.State" class="form-control border border-secondary"  aria-required="true" placeholder="name@example.com" />
                 <label asp-for="Input.State">State</label>
                 <span asp-validation-for="Input.State" class="text-danger"></span>
+            </div>
+
+            <div class="form-floating mb-3 col-4">
+                <input asp-for="Input.PostalCode" class="form-control border border-secondary" aria-required="true" placeholder="name@example.com" />
+                <label asp-for="Input.PostalCode">Postal code</label>
+                <span asp-validation-for="Input.PostalCode" class="text-danger"></span>
             </div>
             
            

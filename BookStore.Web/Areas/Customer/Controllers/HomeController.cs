@@ -74,7 +74,7 @@ namespace BookStore.Web.Areas.Customer.Controllers
                 // Product  = _unitOfWork.Product.Get(u => u.Id == productId, includePrperties: "Category")
             };
 
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Index", "Cart");
         }
 
 
