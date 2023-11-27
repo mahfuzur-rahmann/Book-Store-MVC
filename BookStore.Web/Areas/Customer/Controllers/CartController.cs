@@ -181,6 +181,8 @@ namespace BookStore.Web.Areas.Customer.Controllers
 				var service = new SessionService();
 				Session session = service.Create(options);
 
+				var intentId = session.PaymentIntentId;
+
 				_unitOfWork.OrderHeader.UpdateStripId(ShoppingCartVM.OrderHeader.Id, session.Id, session.PaymentIntentId);
 				_unitOfWork.Save();
 

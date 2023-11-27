@@ -84,7 +84,7 @@
 
                         <div class="mb-3 row p-1">
                             <label asp-for="Product.ImgUrl" class="p-0"> </label>
-                            <input type="file" name="file" class=" form-control border border-secondary" />
+                            <input type="file" name="file" id="uploadBox" class=" form-control border border-secondary" />
 
 
                         </div>
@@ -145,6 +145,19 @@
             ],
             ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
         });
+
+
+        function ValidateInput() {
+            if (document.getElementById("uploadBox").value == "") {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Please upload an Image!',
+                });
+                return false;
+            }
+            return true;
+        }
     </script>
     @{
     <partial name="_ValidationScriptsPartial" />

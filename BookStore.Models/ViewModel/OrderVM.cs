@@ -10,6 +10,6 @@ namespace BookStore.Models.ViewModel
 	{
         public OrderHeader OrderHeader { get; set; }
 
-        public List<OrderDetail> OrderDetail { get; set; }
+        public IEnumerable<OrderDetail> OrderDetail { get; set; }
     }
 }
