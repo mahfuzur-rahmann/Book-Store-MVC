@@ -84,7 +84,7 @@
 
                         <div class="mb-3 row p-1">
                             <label asp-for="Product.ImgUrl" class="p-0"> </label>
-                            <input type="file" name="file" id="uploadBox" class=" form-control border border-secondary" />
+                            <input type="file" name="file" id="uploadBox"  class=" form-control border border-secondary" />
 
 
                         </div>
@@ -105,7 +105,7 @@
                             else
                             {
                                 <div class="col-6 col-md-3">
-                                    <button class="btn btn-outline-dark form-control ">Create</button>
+                                    <button class="btn btn-outline-dark form-control " onClick="return ValidateInput()" >Create</button>
                                 </div>
                             }
 
