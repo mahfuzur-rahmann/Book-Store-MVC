@@ -37,6 +37,15 @@ builder.Services.AddAuthentication().AddFacebook(options =>
     options.ClientSecret = "c9ab98279326fe916e1d0cb5c9302801";
 });
 
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession(opt =>
+{
+    opt.IdleTimeout = TimeSpan.FromMinutes(100);
+    opt.Cookie.HttpOnly = true;
+    opt.Cookie.IsEssential = true;
+
+});
+
 var app = builder.Build(); 
 
 // Configure the HTTP request pipeline.
@@ -54,6 +63,7 @@ app.UseRouting();
 StripeConfiguration.ApiKey = builder.Configuration.GetSection("Stripe:SecretKey").Get<string>();
 app.UseAuthentication();
 app.UseAuthorization();
+app.UseSession();
 app.MapRazorPages();
 app.MapControllerRoute(
     name: "default",

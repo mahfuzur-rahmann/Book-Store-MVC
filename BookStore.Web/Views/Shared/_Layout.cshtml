@@ -1,4 +1,6 @@
-﻿@using BookStore.Utility
+﻿@using Microsoft.AspNetCore.Http
+@using BookStore.Utility
+@inject IHttpContextAccessor HttpContextAccessor
 
 <!DOCTYPE html>
 <html lang="en">
@@ -58,10 +60,9 @@
                         </li>
 
 
-
                         <li class="nav-item">
                             <a class="nav-link" asp-area="Customer" asp-controller="Cart" asp-action="Index">
-                                <i class="bi bi-cart3"></i>
+                                @await Component.InvokeAsync("ShoppingCart")
                             </a>
                         </li>
 

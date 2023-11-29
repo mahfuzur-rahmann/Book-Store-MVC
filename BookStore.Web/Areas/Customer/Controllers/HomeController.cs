@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
+using BookStore.Utility;
 
 namespace BookStore.Web.Areas.Customer.Controllers
 {
@@ -55,14 +56,18 @@ namespace BookStore.Web.Areas.Customer.Controllers
             if(cartFromDb == null)
             {
                 _unitOfWork.ShoppingCart.Add(shoppingCart);
+                _unitOfWork.Save();
+
+                HttpContext.Session.SetInt32(StaticDetails.SessionCart, _unitOfWork.ShoppingCart.GetAll(u=>u.ApplicationUserId == claims.Value).ToList().Count);
 
             }
             else
             {
                 _unitOfWork.ShoppingCart.IncrementCount(cartFromDb, shoppingCart.Count);
+                _unitOfWork.Save();
+
             }
 
-            _unitOfWork.Save();
 
             TempData["success"] = "Product added to cart successfully....";
 
