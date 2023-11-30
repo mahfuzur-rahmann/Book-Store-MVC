@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Http
+@using BookStore.Utility
+@inject IHttpContextAccessor HttpContextAccessor
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -42,22 +46,23 @@
                                 <li class="">
                                     <a class="dropdown-item " asp-area="Admin" asp-controller="Company" asp-action="Index">Company</a>
                                 </li>
-                                @* <li><a class="dropdown-item" href="#">Another action</a></li>
                                 <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li> *@
+                                @if (User.IsInRole(StaticDetails.Role_Admin))
+                                {
+                                    <li><a asp-area="Identity" asp-page="/Account/Register" class="dropdown-item">Create user</a></li>
+                                }
                             </ul>
                         </li>
 
-                        
+
                         <li class="nav-item">
                             <a class="nav-link " asp-area="Admin" asp-controller="Order" asp-action="Index">Manage order</a>
                         </li>
 
-                        
 
                         <li class="nav-item">
                             <a class="nav-link" asp-area="Customer" asp-controller="Cart" asp-action="Index">
-                                <i class="bi bi-cart3"></i>
+                                @await Component.InvokeAsync("ShoppingCart")
                             </a>
                         </li>
 
