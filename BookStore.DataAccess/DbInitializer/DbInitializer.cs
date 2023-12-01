@@ -63,7 +63,7 @@ namespace BookStore.DataAccess.DbInitializer
                     City="Dhaka",
                     StreetAddress="R-19,Dhaka",
                     PostalCode="1216"
-                }, "Admin000.").GetAwaiter().GetResult();
+                }, "Admin000@").GetAwaiter().GetResult();
 
                 ApplicationUser user = _db.ApplicationUsers.FirstOrDefault(u=>u.Email == "admin@gmail.com");
                 _userManager.AddToRoleAsync(user, StaticDetails.Role_Admin).GetAwaiter().GetResult();
