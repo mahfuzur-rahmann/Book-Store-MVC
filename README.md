@@ -5,7 +5,7 @@ This online book store project is developed using the ASP.NET Core 8 framework, 
 
 Admin credentials:
     <br>Email: admin@gmail.com
-    <br>Password: Admin000.
+    <br>Password: Admin000@
 
 After log in as admin, you can create another admin account and other types of user.
 Intially there is no product image but there will be some demo products. But product image can be added by product edit operation.
